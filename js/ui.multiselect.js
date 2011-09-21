@@ -161,7 +161,12 @@ $.widget("ui.multiselect", {
 	},
 	_getOptionNode: function(option) {
 		option = $(option);
-		var node = $('<li class="ui-state-default ui-element" title="'+option.text()+'"><span class="ui-icon"/>'+option.text()+'<a href="#" class="action"><span class="ui-corner-all ui-icon"/></a></li>').hide();
+
+        var xTitle = option.attr("title");
+        if ( xTitle == undefined || xTitle == null || xTitle.trim() == "" )
+            xTitle = option.text();
+
+		var node = $('<li class="ui-state-default ui-element" title="' + xTitle + '"><span class="ui-icon"/>'+option.text()+'<a href="#" class="action"><span class="ui-corner-all ui-icon"/></a></li>').hide();
 		node.data('optionLink', option);
 		return node;
 	},
